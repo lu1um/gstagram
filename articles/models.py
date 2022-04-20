@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from imagekit.models import ProcessedImageField
+from imagekit.processors import Thumbnail
 
 
 class Article(models.Model):
@@ -21,7 +23,13 @@ class Comment(models.Model):
 
 class Picture(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    pictures = models.ImageField(upload_to='article_pictures')
+    upload_picture = ProcessedImageField(
+        blank=True,
+        upload_to='article_pictures/', 
+        processors=[Thumbnail(500, 500)],
+        format='JPEG',
+        options={'quality': 60},
+    )
 
 
 class Bookmark(models.Model):
