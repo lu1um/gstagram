@@ -21,7 +21,7 @@ def create(request):
             article = form.save()
             picture = Picture()
             picture.article = article
-            picture.upload_picture = request.FILES
+            picture.upload_picture = form.cleaned_data.get('picture')
             picture.save()
             return redirect('articles:index')
     else:

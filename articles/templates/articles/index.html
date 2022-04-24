@@ -7,7 +7,9 @@
       {% for article in articles %}
         <p>{{ article.user }}</p>
         <p>{{ article.content }}</p>
-        <p>{{ article.picture_set }}</p>
+        {% for picture in article.picture_set.all %}
+          <p><img src="{{ picture.upload_picture.url }}" alt=""></p>
+        {% endfor %}
       {% endfor %}
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci dignissimos facere eveniet voluptatum ratione placeat eaque nam. Velit facere molestias eius laboriosam fugit, earum consectetur exercitationem ipsam minus! Aliquam, vero!</p>
     </div>
