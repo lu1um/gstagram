@@ -1,5 +1,5 @@
 from django import forms
-from .models import Article
+from .models import Article, Picture
 
 
 class ArticleForm(forms.ModelForm):
