@@ -10,6 +10,7 @@ class Article(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    book_users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Bookmark', related_name='book_articles')
 
 
 class Comment(models.Model):

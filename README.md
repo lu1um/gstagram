@@ -75,3 +75,19 @@ django-admin으로 project 생성
 
   - d-none, d-lg-block으로 lg이상의 크기일때만 오른쪽 내 정보가 표시되도록 했다.
   - style에서 left, transform을 통해서 알맞은 위치에 내 정보가 위치하도록 했다. position-fixed를 적용하면 상대위치를 참조할 수가 없어서 이렇게 했다.
+
+
+
+### 04.23.
+
+- models 수정
+
+  - bookmark를 user와 article에서 참조하려면, 둘 중 하나에 ManyToManyField로 선언되어있어야한다.
+  - 이를 위해 through='Bookmark'속성을 가지는 필드를 Article에 생성해주었다.
+  - 처음엔 User에 이를 생성하려다, 아래와 같은 빨간색 에러가 발생했다.
+
+  ```
+  accounts.User.articles: (fields.E331) Field specifies a many-to-many relation through model 'Bookmark', which has not been installed. 
+  ```
+
+  - ManyToManyField는 같은 

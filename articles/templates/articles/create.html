@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container d-flex flex-row justify-content-center" style="max-width:975px;">
+  <div class="row">
+    <h3 class="text-center">새 게시물 만들기</h3>
+    <hr>
+    <form action="{% url 'articles:create' %}" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+    </form>
+  </div>
+</div>
+{% endblock content %}

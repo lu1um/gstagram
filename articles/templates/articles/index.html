@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container d-flex flex-row justify-content-center justify-content-lg-start" style="min-width:650px; max-width:975px;">
+<div class="container d-flex flex-row justify-content-center justify-content-lg-start" style="max-width:975px;">
   <div class="row">
     <div class="bg-success" style="height:1000px; width:650px;">
       {% for article in articles %}
         <p>{{ article.user }}</p>
         <p>{{ article.content }}</p>
       {% endfor %}
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci dignissimos facere eveniet voluptatum ratione placeat eaque nam. Velit facere molestias eius laboriosam fugit, earum consectetur exercitationem ipsam minus! Aliquam, vero!</p>
     </div>
   </div>
   <div class="d-none d-lg-block position-fixed bg-primary" style="height:200px; width:325px; left:50%; transform: translate(163px, 0);">
