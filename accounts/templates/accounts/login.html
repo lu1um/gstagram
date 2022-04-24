@@ -9,6 +9,7 @@
     <form action="{% url 'accounts:login' %}" method="POST">
       {% csrf_token %}
       {% bootstrap_form form %}
+      <input type="submit">
     </form>
     <hr>
     <a href="">회원가입</a>

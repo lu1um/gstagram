@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect
 from .forms import ArticleForm
 from .models import Article, Picture
 
+
 def index(request):
-    articles = Article.objects.all()
-    context = {
-        'articles': articles,
-    }
-    return render(request, 'articles/index.html', context)
+    if request.user.is_authenticated:
+        articles = Article.objects.all()
+        context = {
+            'articles': articles,
+        }
+        return render(request, 'articles/index.html', context)
+    else:
+        return redirect('accounts:login')
 
 
 def create(request):
