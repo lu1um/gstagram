@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container d-flex flex-row justify-content-center justify-content-lg-start" style="max-width:975px;">
+  <div class="d-flex">
+    {% for picture in article.picture_set.all %}
+      <img src="{{ picture.upload_picture.url }}" alt="">
+    {% endfor %}
+  </div>
+  <section>
+    <p>{{ article.user }}</p>
+    <hr>
+    <p>{{ article.content }}</p>
+    <hr>
+    {% for comment in article.comment_set.all %}
+      <p>{{ comment.user }} {{ comment.content }}</p>
+    {% endfor %}
+  </section>
+</div>
+{% endblock content %}
+

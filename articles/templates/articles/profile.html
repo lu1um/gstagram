@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container d-flex flex-row justify-content-center justify-content-lg-start" style="max-width:975px;">
+  <header class="d-flex">
+    <div class="img">
+      {% for picture in article.picture_set.all %}
+        <img src="{{ picture.upload_picture.url }}" alt="">
+      {% endfor %}
+    </div>
+    <div>
+      <p>{{user.first_name}}</p>
+      <p>{{user.last_name}}</p>
+    </div>
+  </header>
+  <article>
+
+  </article>
+</div>
+{% endblock content %}

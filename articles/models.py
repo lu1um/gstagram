@@ -6,11 +6,11 @@ from imagekit.processors import Thumbnail
 
 class Article(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_articles')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_articles', blank=True)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    book_users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Bookmark', related_name='book_articles')
+    book_users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Bookmark', related_name='book_articles', blank=True)
 
 
 class Comment(models.Model):
