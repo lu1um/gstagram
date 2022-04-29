@@ -5,9 +5,7 @@
 <div class="container d-flex flex-row justify-content-center justify-content-lg-start" style="max-width:975px;">
   <header class="d-flex">
     <div class="img">
-      {% for picture in article.picture_set.all %}
-        <img src="{{ picture.upload_picture.url }}" alt="">
-      {% endfor %}
+      <img src="{% static 'accounts/default_profile.jpg' %}" alt="" class="rounded-circle">
     </div>
     <div>
       <p>{{user.first_name}}</p>

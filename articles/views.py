@@ -19,6 +19,8 @@ def create(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
+            article = form.save(commit=False)
+            article.user = request.user
             article = form.save()
             picture = Picture()
             picture.article = article
