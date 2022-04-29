@@ -1,22 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% static 'articles/index.css' %}
-
 {% block content %}
+<link rel="stylesheet" href="{% static 'articles/index.css' %}">
 <div class="container d-flex flex-row justify-content-center justify-content-lg-start" style="max-width:975px;">
   <div class="row">
     <div class="" style="height:1000px; width:650px;">
       {% for article in articles %}
         <article class="border border-1 my-2">
-          <div class="title d-flex">
-            <img src="{{ article.user.profile_picture.url }}" alt="" class="">
-            <p>{{ article.pk }}. {{ article.user }}</p>
+          <div class="title d-flex align-center my-3">
+            <div class="article-profile mx-3">
+              <img src="{{ article.user.profile_picture.url }}" alt="" class="img-fluid">
+            </div>
+            <p class="mt-1 mb-0">{{ article.user }} ({{ article.pk }}번글) </p>
           </div>
-          <p>{{ article.content }}</p>
           {% for picture in article.picture_set.all %}
-          <a href="{% url 'articles:detail' article.pk %}"><img src="{{ picture.upload_picture.url }}" alt=""></a>
+            <a href="{% url 'articles:detail' article.pk %}"><img src="{{ picture.upload_picture.url }}" alt="" style="width: 100%"></a>
           {% endfor %}
+          <p>{{ article.content }}</p>
         </article>
       {% endfor %}
     </div>

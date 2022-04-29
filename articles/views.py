@@ -6,7 +6,7 @@ from .models import Article, Picture
 
 def index(request):
     if request.user.is_authenticated:
-        articles = Article.objects.all()
+        articles = Article.objects.all()[::-1]
         context = {
             'articles': articles,
         }
