@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% static 'articles/index.css' %}
 
 {% block content %}
 <div class="container d-flex flex-row justify-content-center justify-content-lg-start" style="max-width:975px;">
   <div class="row">
     <div class="" style="height:1000px; width:650px;">
       {% for article in articles %}
-        <article class="border border-2 border-dark my-2">
-          <p>{{ article.pk }}. {{ article.user }}</p>
+        <article class="border border-1 my-2">
+          <div class="title d-flex">
+            <img src="{{ article.user.profile_picture.url }}" alt="" class="">
+            <p>{{ article.pk }}. {{ article.user }}</p>
+          </div>
           <p>{{ article.content }}</p>
           {% for picture in article.picture_set.all %}
           <a href="{% url 'articles:detail' article.pk %}"><img src="{{ picture.upload_picture.url }}" alt=""></a>

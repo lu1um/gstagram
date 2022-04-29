@@ -6,4 +6,4 @@ class ArticleForm(forms.ModelForm):
     picture = forms.ImageField()
     class Meta:
         model = Article
-        fields = ('user', 'content', 'picture',)
+        fields = ('content', 'picture',)
