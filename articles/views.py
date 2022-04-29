@@ -1,14 +1,17 @@
+from xml.etree.ElementTree import Comment
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
-from .forms import ArticleForm
+from .forms import ArticleForm, CommentForm
 from .models import Article, Picture
 
 
 def index(request):
     if request.user.is_authenticated:
         articles = Article.objects.all()[::-1]
+        comment_form = CommentForm()
         context = {
             'articles': articles,
+            'comment_form':comment_form,
         }
         return render(request, 'articles/index.html', context)
     else:
