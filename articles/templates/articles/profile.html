@@ -8,8 +8,12 @@
       <img src="{% static 'accounts/default_profile.jpg' %}" alt="" class="rounded-circle">
     </div>
     <div>
-      <p>{{user.first_name}}</p>
-      <p>{{user.last_name}}</p>
+      <p>
+        {{ user.username }}
+        <a href="{% url 'accounts:update' user.pk %}"><button>프로필 편집</button></a>
+      </p>
+      <p>{{ user.first_name }}</p>
+      <p>{{ user.last_name }}</p>
     </div>
   </header>
   <article>
