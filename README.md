@@ -90,4 +90,7 @@ django-admin으로 project 생성
   accounts.User.articles: (fields.E331) Field specifies a many-to-many relation through model 'Bookmark', which has not been installed. 
   ```
 
-  - ManyToManyField는 같은 
+
+
+
+### 

@@ -2,6 +2,15 @@
 {% load bootstrap5 %}
 
 {% block content %}
-  <h1>유저업데이터</h1>
-  <p>사진 업로드를 해보자</p>
+<div class="container d-flex flex-row justify-content-center" style="max-width:975px;">
+  <div class="row">
+    <h1 class="text-center">프로필 편집</h1>
+    <hr>
+    <form action="{% url 'accounts:update' request.user.pk %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit">
+    </form>
+  </div>
+</div>
 {% endblock content %}

@@ -8,23 +8,23 @@
     <div class="" style="height:1000px; width:650px;">
       {% for article in articles %}
         <article class="border border-1 my-2">
-          <div class="title d-flex align-center my-3">
+          <a href="{% url 'articles:profile' article.user.pk %}" class="title d-flex align-center my-3">
             <div class="article-profile mx-3">
-              <img src="{{ article.user.profile_picture.url }}" alt="" class="img-fluid">
+              <img src="{{ article.user.profile_picture.url }}" alt="" class="img-fluid rounded-circle">
             </div>
             <p class="mt-1 mb-0">{{ article.user }} ({{ article.pk }}번글) </p>
-          </div>
+          </a>
           {% for picture in article.picture_set.all %}
             <img src="{{ picture.upload_picture.url }}" alt="" style="width: 100%">
           {% endfor %}
           <div class="content mx-3">
             <p class="mt-3">{{ article.content }}</p>
-            <a href="{% url 'articles:detail' article.pk %}" class="">댓글 ??개 모두 보기</a>
+            <a href="{% url 'articles:detail' article.pk %}" class="">댓글 {{ article.comment_set.all.count }}개</a>
             {% for comment in article.comment_set.all %}
               <p>{{ comment.user }} {{ comment.content }}</p>
             {% endfor %}
           </div>
-          <form action="#" method="POST" class="border-top py-2 d-flex justify-content-between">
+          <form action="{% url 'articles:comment' article.pk %}" method="POST" class="border-top py-2 d-flex justify-content-between">
             {% csrf_token %}
             <div>
               <i class="fa-regular fa-face-smile fa-xl mx-3"></i>
@@ -36,8 +36,19 @@
       {% endfor %}
     </div>
   </div>
-  <div class="d-none d-lg-block position-fixed bg-primary" style="height:200px; width:325px; left:50%; transform: translate(163px, 0);">
-    <p>오른쪽</p>
+  <div class="d-none d-lg-block position-fixed d-flex flex-column" style="height:200px; width:325px; left:50%; transform: translate(163px, 0);">
+    <div class="d-flex mt-5 mx-3">
+      <div style="height: 56px; width: 56px;">
+        <img src="{{ request.user.profile_picture.url }}" alt="" class="img-fluid  rounded-circle">
+      </div>
+      <div class="m-1 mx-3 mb-3">
+        <p class="m-0">{{ request.user.username }}</p>
+        <p class="m-0 name">{{ request.user.first_name }}</p>
+      </div>
+    </div>
+    <div class="mx-3">
+      <p>회원님을 위한 추천</p>
+    </div>
   </div>
 </div>
 {% endblock content %}

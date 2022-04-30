@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import UserCreationForm
+from .forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 
@@ -40,7 +40,14 @@ def signup(request):
 
 
 def update(request, pk):
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = UserChangeForm(instance=request.user)
     context = {
-        
+        'form': form,
     }
     return render(request, 'accounts/update.html', context)

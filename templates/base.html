@@ -19,7 +19,7 @@
         <a href="" class="fa-regular fa-heart text-black fa-xl text-decoration-none mx-2 mt-3"></a>
         {% if request.user.is_authenticated %}
           <div class="dropdown">
-            <img src="{% static 'accounts/default_profile.jpg' %}" alt="profile" style="width: 25px;" class="rounded-circle dropdown-toggle mx-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ request.user.profile_picture.url }}" alt="profile" style="width: 25px;" class="rounded-circle dropdown-toggle mx-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="{% url 'articles:profile' request.user.pk %}">프로필</a></li>
               <li><a class="dropdown-item" href="#">북마크</a></li>

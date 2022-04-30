@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm as SuperUserCreationForm
+from django.contrib.auth.forms import UserChangeForm as SuperUserChangeForm
 
 
 class UserCreationForm(SuperUserCreationForm):
@@ -8,3 +9,10 @@ class UserCreationForm(SuperUserCreationForm):
     class Meta(SuperUserCreationForm.Meta):
         model = get_user_model()
         fields = SuperUserCreationForm.Meta.fields
+
+
+class UserChangeForm(SuperUserChangeForm):
+
+    class Meta(SuperUserChangeForm.Meta):
+        model = get_user_model()
+        fields = ('username', 'first_name', 'last_name', 'profile_picture',)

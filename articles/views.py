@@ -1,8 +1,7 @@
-from xml.etree.ElementTree import Comment
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from .forms import ArticleForm, CommentForm
-from .models import Article, Picture
+from .models import Article, Picture, Comment
 
 
 def index(request):
@@ -52,3 +51,15 @@ def profile(request, pk):
         'user': user,
     }
     return render(request, 'articles/profile.html', context)
+
+
+def comment(request, pk):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            article = get_object_or_404(Article, pk=pk)
+            comment.article = article
+            comment.save()
+            return redirect('articles:index')

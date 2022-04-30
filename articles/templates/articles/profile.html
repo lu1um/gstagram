@@ -4,10 +4,10 @@
 {% block content %}
 <div class="container d-flex flex-row justify-content-center justify-content-lg-start" style="max-width:975px;">
   <header class="d-flex">
-    <div class="img">
-      <img src="{% static 'accounts/default_profile.jpg' %}" alt="" class="rounded-circle">
+    <div class="" style="height: 150px; width: 150px; margin: 100px; margin-top: 50px;">
+      <img src="{% static 'accounts/default_profile.jpg' %}" alt="" class="img-fluid rounded-circle">
     </div>
-    <div>
+    <div style="margin-top: 50px;">
       <p>
         {{ user.username }}
         <a href="{% url 'accounts:update' user.pk %}"><button>프로필 편집</button></a>
